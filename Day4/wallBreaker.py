@@ -1,4 +1,4 @@
-file = open("test.txt")
+file = open("input.txt")
 
 grid = file.read().splitlines()
 swapGrid = grid.copy()
@@ -28,8 +28,9 @@ def wallRemoveIteration():
             
                 if(nearbyRolls < 4):
                     total += 1
-                    swapGrid[y][x] = "."
- 
+                    listBuffer = list(swapGrid[y]).copy()
+                    listBuffer[x] = 'x'
+                    swapGrid[y] = "".join(listBuffer)
     return total
 
 def scan(x, y):
@@ -42,6 +43,17 @@ def scan(x, y):
     return hasRoll
 
 sum = 0
+numOfRolls = 10000
 
-print(wallRemoveIteration())
+while numOfRolls != 0:
+    numOfRolls = wallRemoveIteration()
+    sum += numOfRolls
+    grid = swapGrid.copy()
+    
+    #print(numOfRolls)
+    #for i in range(0, len(grid)):
+        #print(grid[i])
+
+print(sum)
+
 file.close()
