@@ -2,7 +2,13 @@ import math
 
 file = open("test.txt")
 
+def recursiveSearch(2dArray, target):
+    total = 0
+    for subArray in 2dArray:
+        total += subArray.count(target)
+
 junctionBoxes = []
+circuits = []
 for line in file:
     junctionBoxes.append(line.strip().split(','))
 
@@ -19,5 +25,10 @@ for i in range(0, len(junctionBoxes)):
         if currentDist < minDist:
             minDist = currentDist
             currentCoord = coord
-    print(junctionBoxes[i])
-    print(currentCoord)
+    currentCirc = []
+    currentCirc.append(junctionBoxes[i])
+    currentCirc.append(currentCoord)
+    circuits.append(currentCirc)
+
+for circuit in circuits:
+    print(circuit)
